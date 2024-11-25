@@ -25,10 +25,10 @@ jobs:
           unzip commandlinetools-linux-11076708_latest.zip
           export PATH=$PATH:/home/runner/android/cmdline-tools/bin/
 
-          yes | sdkmanager --sdk_root=/home/runner/android "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973" "cmake;3.31.0"
+          yes | sdkmanager --sdk_root=/home/runner/android "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125" "cmake;3.31.0"
 
           echo "ANDROID_SDK_HOME=/home/runner/android" >> $GITHUB_ENV
-          echo "ANDROID_NDK_HOME=/home/runner/android/ndk/27.0.12077973" >> $GITHUB_ENV
+          echo "ANDROID_NDK_HOME=/home/runner/android/ndk/26.1.10909125" >> $GITHUB_ENV
 
       - name: Build with custom script
         run: |
