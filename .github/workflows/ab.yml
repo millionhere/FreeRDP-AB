@@ -23,6 +23,7 @@ jobs:
           sudo apt install -y unzip
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
           unzip commandlinetools-linux-11076708_latest.zip
+          export PATH=$PATH:/home/runner/android/
           export PATH=$PATH:/home/runner/android/cmdline-tools/bin/
 
           yes | sdkmanager --sdk_root=/home/runner/android "platforms;android-34" "build-tools;34.0.0" "ndk;26.1.10909125" "cmake;3.31.0"
