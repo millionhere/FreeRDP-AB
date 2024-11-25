@@ -34,14 +34,14 @@ jobs:
           export PATH=$PATH:/home/runner/android/ndk/26.1.10909125/toolchains/llvm/prebuilt/linux-x86_64/bin/
 
       - name: Grant execute permission for gradlew
-        run: chmod +x gradlew
-  
+        run: chmod +x ./client/Android/gradlew
+
       - name: Update submodules
         run: git submodule update --init --recursive
-  
+
       - name: Create local.properties
         run: echo "ndk.dir=/home/runner/android/ndk/26.1.10909125" > local.properties
-      
+
       - name: Build with Gradle
-        run: | 
+        run: |
           ./client/Android/gradlew assembleNonRootRelease
