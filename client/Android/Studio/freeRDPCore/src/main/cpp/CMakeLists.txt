@@ -17,7 +17,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-cmake_minimum_required(VERSION 3.13)
+cmake_minimum_required(VERSION 3.31)
 
 if (NOT FREERDP_DEFAULT_PROJECT_VERSION)
 	set(FREERDP_DEFAULT_PROJECT_VERSION "1.0.0.0")
