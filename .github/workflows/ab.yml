@@ -30,6 +30,9 @@ jobs:
           export ANDROID_SDK_HOME=/home/runner/android
           export ANDROID_NDK_HOME=/home/runner/android/ndk/27.0.12077973
 
+          export ANDROID_SDK=/home/runner/android
+          export ANDROID_NDK=/home/runner/android/ndk/27.0.12077973
+
       - name: Build with custom script
         run: |
           ./scripts/android-build-freerdp.sh \
