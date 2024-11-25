@@ -18,14 +18,17 @@ jobs:
 
       - name: Install Android SDK and NDK
         run: |
+          mkdir /home/runner/android && cd /home/runner/android
+
           sudo apt install -y unzip
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip commandlinetools-linux-11076708_latest.zip -d ${{ runner.temp }}
-          echo "${{ runner.temp }}/cmdline-tools/bin" >> $GITHUB_PATH
-          echo "ANDROID_SDK_HOME=${{ runner.temp }}/cmdline-tools" >> $GITHUB_ENV
-          yes | ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --licenses
-          ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --sdk_root=${{ runner.temp }} "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973"
-          echo "ANDROID_NDK_HOME=${ANDROID_SDK_HOME}/ndk/27.0.12077973" >> $GITHUB_ENV
+          unzip commandlinetools-linux-11076708_latest.zip
+          export PATH=$PATH:/home/runner/android/cmdline-tools/bin/
+
+          yes | sdkmanager --sdk_root=/home/runner/android "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973"
+
+          export ANDROID_SDK_HOME=/home/runner/android/cmdline-tools
+          export ANDROID_NDK_HOME=/home/runner/android/ndk/27.0.12077973
 
       - name: Build with custom script
         run: |
