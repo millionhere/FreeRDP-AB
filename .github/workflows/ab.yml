@@ -24,7 +24,7 @@ jobs:
           echo "${{ runner.temp }}/cmdline-tools/bin" >> $GITHUB_PATH
           echo "ANDROID_SDK_HOME=${{ runner.temp }}/cmdline-tools" >> $GITHUB_ENV
           yes | ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --licenses
-          ${{ runner.temp }}/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973"
+          ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --sdk_root=${{ runner.temp }} "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973"
           echo "ANDROID_NDK_HOME=${ANDROID_SDK_HOME}/ndk/27.0.12077973" >> $GITHUB_ENV
 
       - name: Build with custom script
