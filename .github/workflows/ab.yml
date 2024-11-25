@@ -44,4 +44,4 @@ jobs:
 
       - name: Build with Gradle
         run: |
-          ./client/Android/Studio/gradlew assembleNonRootRelease
+          ./client/Android/Studio/gradlew
