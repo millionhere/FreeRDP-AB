@@ -45,4 +45,4 @@ jobs:
       - name: Build with Gradle
         run: |
           cd ./client/Android/Studio
-          ./gradlew
+          ./gradlew assembleDebug
