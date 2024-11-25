@@ -16,13 +16,16 @@ jobs:
           java-version: "17"
           distribution: "temurin"
 
-      - name: Set up Android SDK
-        uses: android-actions/setup-android@v3
-
-      - name: Set up Android NDK
-        uses: android-actions/setup-ndk@v3
-        with:
-          ndk-version: "27.0.12077973"
+      - name: Install Android SDK and NDK
+        run: |
+          sudo apt install -y unzip
+          wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
+          unzip commandlinetools-linux-11076708_latest.zip -d ${{ runner.temp }}/cmdline-tools
+          echo "${{ runner.temp }}/cmdline-tools/bin" >> $GITHUB_PATH
+          echo "ANDROID_SDK_HOME=${{ runner.temp }}/cmdline-tools" >> $GITHUB_ENV
+          yes | ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --licenses
+          ${{ runner.temp }}/cmdline-tools/bin/sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;27.0.12077973"
+          echo "ANDROID_NDK_HOME=${ANDROID_SDK_HOME}/ndk/27.0.12077973" >> $GITHUB_ENV
 
       - name: Build with custom script
         run: |
@@ -31,6 +34,3 @@ jobs:
             --sdk $ANDROID_SDK_HOME \
             --openh264-ndk $ANDROID_NDK_HOME \
             --conf android-build-release.conf
-        env:
-          ANDROID_NDK_HOME: ${{ secrets.ANDROID_NDK_HOME }}
-          ANDROID_SDK_HOME: ${{ secrets.ANDROID_SDK_HOME }}
