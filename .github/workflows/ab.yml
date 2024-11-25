@@ -1,0 +1,36 @@
+name: Android Build Workflow
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up JDK
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Set up Android NDK
+        uses: android-actions/setup-ndk@v3
+        with:
+          ndk-version: "27.0.12077973"
+
+      - name: Build with custom script
+        run: |
+          ./scripts/android-build-freerdp.sh \
+            --ndk $ANDROID_NDK_HOME \
+            --sdk $ANDROID_SDK_HOME \
+            --openh264-ndk $ANDROID_NDK_HOME \
+            --conf android-build-release.conf
+        env:
+          ANDROID_NDK_HOME: ${{ secrets.ANDROID_NDK_HOME }}
+          ANDROID_SDK_HOME: ${{ secrets.ANDROID_SDK_HOME }}
