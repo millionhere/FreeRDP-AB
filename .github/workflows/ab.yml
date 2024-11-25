@@ -20,7 +20,7 @@ jobs:
         run: |
           sudo apt install -y unzip
           wget https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip
-          unzip commandlinetools-linux-11076708_latest.zip -d ${{ runner.temp }}/cmdline-tools
+          unzip commandlinetools-linux-11076708_latest.zip -d ${{ runner.temp }}
           echo "${{ runner.temp }}/cmdline-tools/bin" >> $GITHUB_PATH
           echo "ANDROID_SDK_HOME=${{ runner.temp }}/cmdline-tools" >> $GITHUB_ENV
           yes | ${{ runner.temp }}/cmdline-tools/bin/sdkmanager --licenses
