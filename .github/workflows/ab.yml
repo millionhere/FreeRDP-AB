@@ -36,4 +36,4 @@ jobs:
             --ndk $ANDROID_NDK_HOME \
             --sdk $ANDROID_SDK_HOME \
             --openh264-ndk $ANDROID_NDK_HOME \
-            --conf android-build-release.conf
+            --conf ./scripts/android-build-release.conf
