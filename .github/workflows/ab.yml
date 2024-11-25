@@ -30,6 +30,9 @@ jobs:
           echo "ANDROID_SDK_HOME=/home/runner/android" >> $GITHUB_ENV
           echo "ANDROID_NDK_HOME=/home/runner/android/ndk/26.1.10909125" >> $GITHUB_ENV
 
+          echo "ANDROID_SDK=/home/runner/android" >> $GITHUB_ENV
+          echo "ANDROID_NDK=/home/runner/android/ndk/26.1.10909125" >> $GITHUB_ENV
+
       - name: Build with custom script
         run: |
           ./scripts/android-build-freerdp.sh \
